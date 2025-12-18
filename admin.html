@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Админка</h2>
+<h3>Пользователи</h3>
+<ul>
+    {% for u in users %}
+    <li>{{ u.username }} ({{ u.role }}) {% if u.group_name %}| Группа: {{ u.group_name }}{% endif %}</li>
+    {% endfor %}
+</ul>
+
+<h3>Проекты</h3>
+<ul>
+    {% for p in projects %}
+    <li>{{ p.title }} | Студент: {{ p.student_name }} | Дедлайн: {{ p.deadline }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Проверки</h3>
+<ul>
+    {% for s in submissions %}
+    <li>Проект ID: {{ s.project_id }} | Преподаватель ID: {{ s.teacher_id }} | Оценка: {{ s.grade }} | Статус: {{ s.status }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

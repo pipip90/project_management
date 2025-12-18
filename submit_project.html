@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Сдать проект</h2>
+<form method="POST">
+    <p>Вы подтверждаете сдачу проекта?</p>
+    <button type="submit">Сдать</button>
+</form>
+<a href="{{ url_for('student_projects') }}">Назад</a>
+{% endblock %}
