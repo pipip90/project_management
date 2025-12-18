@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Проекты студентов</h2>
+{% if projects %}
+<ul>
+    {% for project in projects %}
+    <li>
+        <h3>{{ project.title }} ({{ project.student_name }}, группа {{ project.group_name }})</h3>
+        <p>{{ project.description }}</p>
+        <p>Дедлайн: {{ project.deadline }}</p>
+        {% if project.file_path %}
+            <p>Файл: <a href="{{ url_for('uploaded_file', filename=project.file_path) }}">Скачать DOCX</a></p>
+        {% else %}
+            <p>Файл не загружен</p>
+        {% endif %}
+        <a href="{{ url_for('view_project', project_id=project.id) }}" class="button">Проверить проект</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Нет проектов для проверки.</p>
+{% endif %}
+{% endblock %}
