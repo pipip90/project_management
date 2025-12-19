@@ -2,6 +2,21 @@
 {% block content %}
 <h2>Мои проекты</h2>
 <a href="{{ url_for('add_project') }}" class="button">Добавить проект</a>
+
+<div>
+    <h3>Отправить проект учителю</h3>
+    <form action="{{ url_for('submit_project') }}" method="POST">
+        <label for="teacher">Выберите учителя:</label>
+        <select name="teacher_login" id="teacher">
+            {% for teacher in teachers %}
+                <option value="{{ teacher.login }}">{{ teacher.name }} ({{ teacher.login }})</option>
+            {% endfor %}
+        </select>
+        <input type="hidden" name="project_id" value="{{ project.id }}">
+        <button type="submit" class="button">Отправить проект</button>
+    </form>
+</div>
+
 {% if project_info %}
 <ul>
     {% for project, submission in project_info %}
